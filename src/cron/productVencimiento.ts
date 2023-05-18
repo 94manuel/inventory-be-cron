@@ -9,7 +9,7 @@ const moment = require('moment');
 mongo.connect();
 
 export function expirationDates(socket: Socket, daysExpiration: number, categories: string[]) {
-    cron.schedule("*/5 * * * * *", async () => {
+    cron.schedule("0 10 * * *", async () => {
         console.log("Running a job every 5 seconds in Colombia");
 
         const products = await Product.find({
