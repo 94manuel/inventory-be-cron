@@ -1,20 +1,11 @@
-# Usar una imagen base de Node.js
-FROM node:14
+FROM node:16
+WORKDIR /app
 
-# Establecer el directorio de trabajo en el contenedor
-WORKDIR /usr/src/app
-
-# Copiar package.json y package-lock.json al directorio de trabajo
-COPY package*.json ./
-
-# Instalar las dependencias del proyecto
-RUN npm install
-
-# Copiar el resto de los archivos del proyecto al contenedor
 COPY . .
 
-# Exponer el puerto en el que se ejecutará la aplicación
-EXPOSE 8080
+RUN npm install
 
-# Comando para ejecutar la aplicación
-CMD [ "node", "cronJob.js" ]
+RUN npm install -g typescript
+RUN npm run build
+
+CMD ["npm", "start"]
